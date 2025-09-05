@@ -1,8 +1,10 @@
 /* Universal Styles for OldMartijntje's Game Statistics */
 
 :root {
-    --primary: #a91e50; /* EJS pink */
-    --secondary: #3178c6; /* TypeScript blue */
+    --primary: #a91e50;
+    /* EJS pink */
+    --secondary: #f1e05a;
+    /* JavaScript blue */
     --dark-bg: #181622;
     --card-bg: #232136;
     --text-light: #f8f9fa;
