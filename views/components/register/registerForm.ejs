@@ -1,0 +1,51 @@
+<form id="registerForm">
+
+    <form id="registerForm">
+        <div class="mb-3">
+            <label for="username" class="form-label">Choose a username</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" required>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Choose a password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+        </div>
+        <div class="links error" id="errorRegisterText" style="display: none;">
+            <p>Error text</p>
+        </div>
+        <div class="d-grid">
+            <button type="button" onclick="submitRegister()" class="btn btn-primary">Create Account</button>
+        </div>
+    </form>
+    <script>
+        function submitRegister() {
+            const usernameField = document.getElementById('username');
+            const passwordField = document.getElementById('password');
+            const errorText = document.getElementById('errorRegisterText');
+            if (errorText) errorText.style.display = "none";
+            if (usernameField && passwordField && usernameField.value && passwordField.value) {
+                fetch('/api/login/register/ui', {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username: usernameField.value, password: passwordField.value })
+                }).then(async function (res) {
+                    const content = await res.json();
+                    if (res.status == 200 && res.ok == true && content.message && content.message.includes("Account Created")) {
+                        window.location.href = "/register-success";
+                    } else {
+                        if (errorText) {
+                            errorText.style.display = "block";
+                            errorText.children[0].innerText = content.message || "Registration failed.";
+                        }
+                    }
+                }).catch(function () {
+                    if (errorText) {
+                        errorText.style.display = "block";
+                        errorText.children[0].innerText = "Network error. Please try again.";
+                    }
+                });
+            }
+        }
+    </script>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../components/technical/head') %>
+</head>
+
+<body>
+    <%- include('../components/default/header') %>
+
+
+        <div class="main-container">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <% if (mode==='form' ) { %>
+                            <div class="site-card info-card">
+                                <div class="logo">
+                                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="50" cy="50" r="45" fill="var(--primary)" />
+                                        <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central"
+                                            font-size="40">🦕</text>
+                                    </svg>
+                                    <div class="brand-name">Register for Diagonal-Dinosaur</div>
+                                </div>
+                                <%- include('../components/register/registerInfo') %>
+                                    <%- include('../components/register/registerForm', { error: typeof error
+                                        !=='undefined' ? error : null }) %>
+                            </div>
+                            <% } else if (mode==='closed' ) { %>
+                                <%- include('../components/register/registerClosed') %>
+                                    <% } else { %>
+                                        <div class="site-card info-card">
+                                            <div class="logo">
+                                                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                                    <circle cx="50" cy="50" r="45" fill="var(--primary)" />
+                                                    <text x="50%" y="50%" text-anchor="middle"
+                                                        dominant-baseline="central" font-size="40">🦕</text>
+                                                </svg>
+                                                <div class="brand-name">Register for Diagonal-Dinosaur</div>
+                                            </div>
+                                            <%- include('../components/register/registerInfo') %>
+                                                <div class="text-center">
+                                                    <a href="/login" class="btn btn-primary">Back to Login</a>
+                                                </div>
+                                        </div>
+                                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="/helperMethods.js"></script>
+        <script src="/loginscript.js"></script>
+        <script src="/registerScript.js"></script>
+
+        <%- include('../components/technical/bootstrapAndTracking') %>
+</body>
+
+</html>

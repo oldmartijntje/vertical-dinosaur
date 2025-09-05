@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../components/technical/head') %>
+</head>
+
+<body>
+    <%- include('../components/default/header') %>
+
+        <div class="main-container">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <div class="site-card info-card">
+                            <div class="logo">
+                                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="50" cy="50" r="45" fill="var(--primary)" />
+                                    <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central"
+                                        font-size="40">🦕</text>
+                                </svg>
+                                <div class="brand-name">Diagonal-Dinosaur Webapp Template</div>
+                            </div>
+                            <div class="info-text">
+                                <h2 class="text-center mb-4">A NodeTS EJS MongoDB Webapp Template</h2>
+                                <p>
+                                    <strong>Diagonal-Dinosaur</strong> is a modern template and framework for building
+                                    your own personal website or webapp.<br>
+                                    It comes with a secure login system, so you can focus on your content and features.
+                                </p>
+                                <h3 class="mt-4">Features</h3>
+                                <ul>
+                                    <li>🔒 Built-in authentication & session management</li>
+                                    <li>⚡ Node.js + TypeScript backend</li>
+                                    <li>🗄️ MongoDB integration</li>
+                                    <li>🎨 EJS templating for flexible UI</li>
+                                    <li>📦 Easy to extend for your own needs</li>
+                                </ul>
+                                <h3 class="mt-4">Get Started</h3>
+                                <ol>
+                                    <li>Clone this repo</li>
+                                    <li>Install dependencies (<code>npm install</code>)</li>
+                                    <li>Configure your MongoDB connection</li>
+                                    <li>Run the app (<code>npm start</code>)</li>
+                                    <li>Customize your pages and features!</li>
+                                </ol>
+                                <h3 class="mt-4">About</h3>
+                                <p>
+                                    Diagonal-Dinosaur is designed to save you time when building a personal website or
+                                    webapp. The login system is ready to go, so you don't need to worry about
+                                    authentication or user management.
+                                </p>
+                                <div class="mt-5 d-flex justify-content-center gap-3">
+                                    <a href="/login" class="btn btn-primary">Go to Login</a>
+                                    <a href="https://github.com/oldmartijntje/diagonal-dinosaur" target="_blank"
+                                        class="btn btn-outline-light">View on GitHub</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="/helperMethods.js"></script>
+        <script src="/loginscript.js"></script>
+
+        <%- include('../components/technical/bootstrapAndTracking') %>
+</body>
+
+</html>

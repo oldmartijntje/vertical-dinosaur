@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../components/technical/head') %>
+</head>
+
+<body>
+    <%- include('../components/default/header') %>
+
+        <div class="main-container">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <div class="site-card login-card">
+                            <div class="logo">
+                                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="50" cy="50" r="45" fill="var(--primary)" />
+                                    <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central" font-size="40">🦕</text>
+                                </svg>
+                                <div class="brand-name">Diagonal-Dinosaur Login</div>
+                            </div>
+
+                            <form>
+                                <div class="mb-3">
+                                    <label for="username" class="form-label">Username</label>
+                                    <input type="text" class="form-control" id="username" placeholder="Username">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="password"
+                                        placeholder="Enter your password">
+                                </div>
+                                <div class="links error" id="errorLoginText" style="display: none;">
+                                    <p>Error text</p>
+                                </div>
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="rememberMe">
+                                    <label class="form-check-label" for="rememberMe">Remember me</label>
+                                </div>
+                                <div class="d-grid">
+                                    <button type="button" onclick="submitIt()" class="btn btn-primary">Sign in</button>
+                                </div>
+                                <div class="links">
+                                    <a href="/register">Create an account</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="/helperMethods.js"></script>
+        <script src="/loginscript.js"></script>
+        <script>
+            function submitIt() {
+                if (passwordField != null && passwordField != null) {
+                    if (usernameField.value && passwordField.value) {
+                        fetch('/api/login', {
+                            method: 'POST',
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ username: usernameField.value, password: passwordField.value })
+                        }).then(async function (res) {
+                            const content = await res.json();
+                            if (res.status == 200 && res.ok == true && content.sessionToken != undefined) {
+                                data = {
+                                    username: usernameField.value,
+                                    token: content.sessionToken
+                                }
+                                if (rememberMe.checked && content.refreshToken != undefined) {
+                                    data.refreshToken = content.refreshToken;
+                                }
+                                localStorage.setItem("diagonal_dinosaur_user", JSON.stringify(data));
+                                try {
+                                    if (errorLoginText) {
+                                        errorLoginText.style.display = "none";
+                                    }
+                                } catch (e) {
+
+                                }
+                                authenticatedUser = true;
+                                setHeaderText();
+                            } else {
+                                try {
+                                    if (errorLoginText) {
+                                        errorLoginText.style.display = "block";
+                                        errorLoginText.children[0].innerText = content.message;
+                                    }
+                                } catch (e) {
+
+                                }
+                            }
+                            writeLog(res, "/login");
+                            writeLog(content, "/login");
+                        });
+
+
+                    }
+                }
+            }
+        </script>
+
+        <%- include('../components/technical/bootstrapAndTracking') %>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<span style="display: none;" id="pageReference" data-page="<%= title %>"></span>
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Diagonal-Dinosaur 🦕</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/">Home</a>
+                </li>
+                <li class="nav-item" id="loginOrAccountNav">
+                    <a class="nav-link" aria-current="page" href="/login">Login</a>
+                </li>
+                <li class="nav-item" id="dashboardNav">
+                    <a class="nav-link" aria-current="page" href="/dashboard">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" target="_blank" href="https://github.com/oldmartijntje/diagonal-dinosaur">GitHub</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<script>
+    var loginOrAccountNav = document.getElementById("loginOrAccountNav");
+    var dashboardNav = document.getElementById("dashboardNav");
+    let unLoggedInPages = ['Login', '404', 'Register', 'Home'];
+    let page = document.getElementById("pageReference").dataset.page;
+    if (unLoggedInPages.includes(page)) {
+        dashboardNav.remove();
+    } else {
+        loginOrAccountNav.remove();
+    }
+    let items = document.querySelectorAll('.nav-link');
+    items.forEach(element => {
+        if (element.innerText == page) {
+            element.classList.add("active");
+        }
+    });
+</script>

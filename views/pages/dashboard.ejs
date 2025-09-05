@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../components/technical/head') %>
+</head>
+
+<body>
+    <%- include('../components/default/header') %>
+
+
+        <div class="dashboard-app">
+            <aside class="dashboard-sidebar">
+                <div class="sidebar-header">🦕 Dashboard</div>
+                <ul class="sidebar-list">
+                    <a href="/dashboard/home" class="sidebar-item sidebar-link" id="tab-home">Home</a>
+                    <a href="/dashboard/template" class="sidebar-item sidebar-link" id="tab-template">Template</a>
+                    <a href="/dashboard/users" class="sidebar-item sidebar-link" id="tab-users">Users</a>
+                </ul>
+                <div class="dashboard-version"
+                    style="margin-top: 2em; font-size: 0.9em; color: #888; text-align: center;">
+                    System Version: <strong>
+                        <%= version %>
+                    </strong>
+                </div>
+            </aside>
+            <main class="dashboard-main-content" id="dashboard-content">
+                <!-- Content will be loaded here -->
+            </main>
+        </div>
+        <script>
+            // Simple SPA-like tab switching
+            // SPA-like navigation using history API
+            const content = document.getElementById('dashboard-content');
+            function setActiveTab(path) {
+                document.querySelectorAll('.sidebar-item').forEach(item => item.classList.remove('active'));
+                if (path.endsWith('/home')) document.getElementById('tab-home').classList.add('active');
+                else if (path.endsWith('/template')) document.getElementById('tab-template').classList.add('active');
+                else if (path.endsWith('/users')) document.getElementById('tab-users').classList.add('active');
+            }
+            async function loadTab(path, pushState = true) {
+                setActiveTab(path);
+                const res = await fetch(path + '-content');
+                const html = await res.text();
+                content.innerHTML = html;
+                // Execute embedded scripts in loaded HTML
+                Array.from(content.querySelectorAll('script')).forEach(oldScript => {
+                    const newScript = document.createElement('script');
+                    if (oldScript.src) {
+                        newScript.src = oldScript.src;
+                    } else {
+                        newScript.textContent = oldScript.textContent;
+                    }
+                    // Copy attributes
+                    Array.from(oldScript.attributes).forEach(attr => {
+                        newScript.setAttribute(attr.name, attr.value);
+                    });
+                    oldScript.replaceWith(newScript);
+                });
+                if (pushState) history.pushState(null, '', path);
+            }
+            document.querySelectorAll('.sidebar-link').forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    loadTab(link.getAttribute('href'));
+                });
+            });
+            window.addEventListener('popstate', () => {
+                loadTab(location.pathname, false);
+            });
+            // Initial load: default to /dashboard/home
+            if (location.pathname === '/dashboard') {
+                loadTab('/dashboard/home');
+            } else {
+                loadTab(location.pathname, false);
+            }
+        </script>
+        <style>
+            .dashboard-app {
+                display: flex;
+                flex-grow: 1;
+                min-height: 0;
+                background: #1e1e1e;
+                color: #d4d4d4;
+                font-family: 'Segoe UI', 'Fira Mono', monospace;
+                border-radius: 8px;
+                overflow: hidden;
+            }
+
+            .dashboard-sidebar {
+                width: 220px;
+                background: #252526;
+                padding: 1em 0;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .sidebar-header {
+                font-weight: bold;
+                font-size: 1.2em;
+                padding: 0.5em 1em;
+                border-bottom: 1px solid #333;
+            }
+
+            .sidebar-list {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            .sidebar-item {
+                padding: 0.7em 1.5em;
+                cursor: pointer;
+                display: block;
+                border-left: 3px solid transparent;
+                transition: background 0.2s;
+                text-decoration: none;
+                color: inherit;
+            }
+
+            .sidebar-item.active {
+                background: #37373d;
+                border-left: 3px solid #007acc;
+                color: #fff;
+            }
+
+            .sidebar-item:hover {
+                background: #2c2c32;
+            }
+
+            .dashboard-main-content {
+                flex: 1;
+                padding: 2em;
+                background: #1e1e1e;
+                overflow-y: auto;
+            }
+        </style>
+        <script src="/helperMethods.js"></script>
+        <%- include('../components/technical/bootstrapAndTracking') %>
+</body>
+
+</html>
