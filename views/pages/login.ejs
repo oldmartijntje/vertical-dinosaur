@@ -16,9 +16,10 @@
                             <div class="logo">
                                 <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                                     <circle cx="50" cy="50" r="45" fill="var(--primary)" />
-                                    <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central" font-size="40">🦕</text>
+                                    <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central"
+                                        font-size="40">🦕</text>
                                 </svg>
-                                <div class="brand-name">Diagonal-Dinosaur Login</div>
+                                <div class="brand-name">Vertical-Dinosaur Login</div>
                             </div>
 
                             <form>
@@ -73,7 +74,7 @@
                                 if (rememberMe.checked && content.refreshToken != undefined) {
                                     data.refreshToken = content.refreshToken;
                                 }
-                                localStorage.setItem("diagonal_dinosaur_user", JSON.stringify(data));
+                                localStorage.setItem("vertical_dinosaur_user", JSON.stringify(data));
                                 try {
                                     if (errorLoginText) {
                                         errorLoginText.style.display = "none";
