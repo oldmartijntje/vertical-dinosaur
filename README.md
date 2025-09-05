@@ -2,7 +2,7 @@
 # vertical-dinosaur
 JavaScript (ported from [Diagonal Dinosaur](https://github.com/oldmartijntje/diagonal-dinosaur), which is TypeScript) EJS MongoDB webapp Template📋
 
-**Note:** This project is a port of the original TypeScript version to JavaScript. All TypeScript code and configuration have been removed.
+This port is v1.1.0 of [Diagonal Dinosaur](https://github.com/oldmartijntje/diagonal-dinosaur) (which never officially released). This port will not be updated to future [Diagonal Dinosaur](https://github.com/oldmartijntje/diagonal-dinosaur) versions.
 
 This requires you either one of the followig:
 - You run mongodb locally
