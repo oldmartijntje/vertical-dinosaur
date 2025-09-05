@@ -1,5 +1,8 @@
-# diagonal-dinosaur
-NodeTS EJS Mongodb webapp Template📋
+
+# vertical-dinosaur
+JavaScript (ported from [Diagonal Dinosaur](https://github.com/oldmartijntje/diagonal-dinosaur), which is TypeScript) EJS MongoDB webapp Template📋
+
+**Note:** This project is a port of the original TypeScript version to JavaScript. All TypeScript code and configuration have been removed.
 
 This requires you either one of the followig:
 - You run mongodb locally
@@ -8,9 +11,10 @@ This requires you either one of the followig:
 
 ## Setup
 
-Run `npm i` in the root folder, this installs all packages.
 
-Then run `npm run setup` in that root folder. To learn more about the setup process and all available options, read [the setup documentation here](./documentation/SETUP_SCRIPT.md).
+Run `npm i` in the root folder to install all packages.
+
+Then run `npm run setup` in the root folder. To learn more about the setup process and all available options, read [the setup documentation here](./documentation/SETUP_SCRIPT.md).
 
 ## Request Logging
 
@@ -18,7 +22,8 @@ By default, this application logs every incoming HTTP request (including IP, coo
 
 ## Running
 
-run `npm run start` to start the backend. The console will give you the port the front-end is on. This port can be changed via the `settings.json`
+
+Run `npm start` to start the backend. The console will give you the port the front-end is on. This port can be changed via the `settings.json`.
 
 ## Account AccessIdentifiers
 

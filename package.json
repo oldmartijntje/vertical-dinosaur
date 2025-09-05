@@ -1,13 +1,13 @@
 {
-    "name": "backend",
+    "name": "vertical-dinosaur",
     "version": "1.0.0",
     "description": "To make it easy for you to get started with GitLab, here's a list of recommended next steps.",
-    "main": "index.js",
+    "main": "src/server.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "setup": "node setup.js",
-        "start": "npx ts-node src/server",
-        "dev": "nodemon --exec ts-node src/server"
+        "start": "node src/server.js",
+        "dev": "nodemon src/server.js"
     },
     "keywords": [],
     "author": "",
@@ -21,15 +21,10 @@
         "inquirer": "^8.2.6",
         "mongodb": "^6.3.0",
         "mongoose": "^8.1.2",
+        "uuid": "^11.1.0",
         "worker-thread": "^1.1.0"
     },
     "devDependencies": {
-        "@types/bcrypt": "^5.0.2",
-        "@types/cors": "^2.8.17",
-        "@types/express": "^4.17.21",
-        "@types/node": "^20.11.17",
-        "ts-node": "^10.9.2",
-        "typescript": "^5.8.3",
         "morgan": "~1.9.1",
         "nodemon": "^3.1.10"
     }
